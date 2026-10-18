@@ -1,0 +1,72 @@
+name: Phase 1 one-partition diagnostic (manual opt-in only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_live:
+        description: 'Explicit one-partition real API request? Default false'
+        required: true
+        type: boolean
+        default: false
+      service:
+        description: 'Single RTMS API'
+        required: true
+        type: choice
+        options: [trade_detail, trade_basic, rent]
+      lawd:
+        description: 'Official five-digit LAWD code; example 11110'
+        required: true
+        type: string
+        default: '11110'
+      ymd:
+        description: 'Contract YYYYMM'
+        required: true
+        type: string
+        default: '202609'
+
+permissions:
+  contents: read
+
+jobs:
+  dry_run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline unit tests and no-network dry-run
+        env:
+          INPUT_SERVICE: ${{ inputs.service }}
+          INPUT_LAWD: ${{ inputs.lawd }}
+          INPUT_YMD: ${{ inputs.ymd }}
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -q
+          python scripts/collect_rtms.py --service "$INPUT_SERVICE" \
+            --lawd "$INPUT_LAWD" --ymd "$INPUT_YMD" --dry-run
+
+  single_partition_live:
+    needs: dry_run
+    if: ${{ inputs.run_live == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exactly one RTMS region/month, no artifacts and no source commit
+        env:
+          DATA_GO_KR_SERVICE_KEY: ${{ secrets.DATA_GO_KR_SERVICE_KEY }}
+          INPUT_SERVICE: ${{ inputs.service }}
+          INPUT_LAWD: ${{ inputs.lawd }}
+          INPUT_YMD: ${{ inputs.ymd }}
+        run: |
+          set -euo pipefail
+          python scripts/collect_rtms.py --service "$INPUT_SERVICE" \
+            --lawd "$INPUT_LAWD" --ymd "$INPUT_YMD" \
+            --rows 100 --max-pages 5 --live --dest /tmp/realestate_phase1
+          # Raw responses are ephemeral and NEVER uploaded as public artifacts.
+          # Durable storage and source licensing require separate approval.
