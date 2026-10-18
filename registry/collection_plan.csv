@@ -1,0 +1,10 @@
+phase,task,scope,frequency,evidence,gate,status
+1A,공공데이터 API 7건 활용신청,서비스별 승인 + 개발키 + XML/JSON 테스트,1회,"신청/승인 화면, 키 이름만",G00,TODO
+1A,R-ONE 키 및 통계코드 확인,로그인→키 발급→아파트 매매·전세 지수 STATBL/CLS/ITM 목록 저장,1회,기술문서/통계표 ID/단위,"G00,G13",TODO
+1B,법정동 전체/폐지 코드 확보,"현존+폐지 분리, 10자리 문자열 보존, 시군구 5자리 생성",월별,코드 버전/sha256/코드 수,"G01,G08",TODO
+1B,수집 3개 대표권역 스모크,"서울 종로(11110), 수도권 1곳, 지방 1곳 × 이전 완료월",1회,HTTP 기관코드/totalCount/페이지/스키마,"G02,G03,G05",TODO
+1C,전국 최근 36개 완료월 히스토리 초기 적재,전국 지역×36개월 매매상세·전월세를 서비스별 할당량 내 분할,한 번(여러 배치),"partition receipt, sample sha256","G03,G04,G10,G15",TODO
+1C,매매 기본과 상세 대조,"표본 지역/월 일치율, 결측/유형 차이",월별,diff 보고서,G07,TODO
+1D,K-APT 단지 목록·기본,전국 시도→kaptCode→단지 기본정보 수집,주/월,kaptCode coverage/match uncertainty,"G09,G18",TODO
+1D,건축HUB 표제부,전국 전체가 아닌 발견된 아파트 위치부터 확장,월별,PK mapping/승인일·세대수 diff,G09,TODO
+1E,갱신/품질 경보 파이프,최근 6개월 rolling 재조회 + immutable diff + QA,매일 (서버 운영 제안),G00-G18 gate receipts,"G06,G10,G11",TODO
