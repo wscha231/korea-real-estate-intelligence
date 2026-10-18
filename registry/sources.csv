@@ -1,0 +1,14 @@
+source_name,url,checked_on,type,notes
+lawd,https://www.data.go.kr/data/15077871/openapi.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+trade_detail,https://www.data.go.kr/data/15126468/openapi.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+trade_basic,https://www.data.go.kr/data/15126469/openapi.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+rent,https://www.data.go.kr/data/15126474/openapi.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+kapt_list,https://www.data.go.kr/data/15057332/openapi.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+kapt_base,https://www.data.go.kr/data/15058453/openapi.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+bld,https://www.data.go.kr/data/15134735/openapi.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+r_one,https://www.reb.or.kr/r-one/portal/openapi/openApiIntroPage.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+code_org,https://www.code.go.kr/stdcode/regCodeL.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+r_dev,https://www.reb.or.kr/r-one/portal/openapi/openApiDevPage.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+r_code,https://www.reb.or.kr/r-one/portal/openapi/openApiGuideCdPage.do,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+r_old,https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=10251&nttSn=98700,2026-10-18,공식 URL,포털 공개 페이지 확인; 인증된 호출 미실행
+github,https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets,2026-10-18,공식 문서,포털 공개 페이지 확인; 인증된 호출 미실행
